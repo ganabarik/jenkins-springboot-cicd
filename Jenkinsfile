@@ -20,8 +20,8 @@ pipeline {
 		stage("Quality Gate Status Check") {
 			steps {
 				script {
-					withSonarQubeEnv(credentialsId: 'jenkin-devops') {
-						bat 'mvn sonar:sonar'
+					withSonarQubeEnv('sonarserver') {
+						bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
 					}
 					timeout(time: 1, unit:'HOURS') {
 						def qg = waitForQualityGate()
