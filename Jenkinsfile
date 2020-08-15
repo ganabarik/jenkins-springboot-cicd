@@ -13,7 +13,7 @@ pipeline {
 		stage("Testing stage") {
 			steps {
 				withMaven(maven : 'jenkin-maven') {
-					bat '${scannerHome}/bin/sonar-scanner'
+					bat 'mvn test'
 				}
 			}
 		}
@@ -22,7 +22,7 @@ pipeline {
 				script {
 					def scannerHome = tool 'SonarScanner 8.4.1';
 					withSonarQubeEnv('sonarserver') {
-						bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+						bat '${scannerHome}/bin/sonar-scanner'
 					}
 					timeout(time: 1, unit:'HOURS') {
 						def qg = waitForQualityGate()
