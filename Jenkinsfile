@@ -6,21 +6,21 @@ pipeline {
 			
 			steps {
 				withMaven(maven : 'jenkin-maven') {
-					sh 'mvn clean comile'
+					bat 'mvn clean comile'
 				}
 			}
 		}
 		stage("Testing stage") {
 			steps {
 				withMaven(maven : 'jenkin-maven') {
-					sh 'mvn test'
+					bat 'mvn test'
 				}
 			}
 		}
 		stage("Install stage") {
 			steps {
 				withMaven(maven : 'jenkin-maven') {
-					sh 'mvn install'
+					bat 'mvn install'
 				}
 			}
 		}
