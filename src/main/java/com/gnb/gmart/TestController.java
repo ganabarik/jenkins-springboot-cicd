@@ -8,7 +8,7 @@ public class TestController {
 	
 	@GetMapping("/message")
 	public String getMessage() {
-		return "welcome to jenkins pipeline-CI/CD/Docker";
+		return "welcome to jenkins pipeline-CI/CD/Docker/k8s";
 	}
 
 }
