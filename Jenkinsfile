@@ -13,13 +13,14 @@ pipeline {
 		stage("Testing stage") {
 			steps {
 				withMaven(maven : 'jenkin-maven') {
-					bat 'mvn test'
+					bat '${scannerHome}/bin/sonar-scanner'
 				}
 			}
 		}
 		stage("Quality Gate Status Check") {
 			steps {
 				script {
+					def scannerHome = tool 'SonarScanner 8.4.1';
 					withSonarQubeEnv('sonarserver') {
 						bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
 					}
